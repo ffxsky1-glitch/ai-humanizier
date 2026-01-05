@@ -120,16 +120,15 @@ export function HeroSection() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-primary mb-6">
-            Faster than traditional rewriters. Turnitin-aware (results vary). Inspired by aihumanize.io.
+            Faster than traditional rewriters. Turnitin-aware. Pro AI rewriting in seconds, free core features.
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
             Rewritify is the fast
             <span className="text-primary"> AI Rewriter & AI Humanizer</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Avoid getting flagged for AI text in homework, essays, PPTs, or reports. Rewritify rewrites fast, preserves
-            meaning, and is engineered to reduce AI detection risk while protecting privacy. Core features are free, no
-            login is required, and it is easy for students, professionals, and creators to use.
+            Rewritify is the fast AI rewriter for safer, human-sounding text. Free core features, no login,
+            privacy-first. Built for students, professionals, and creators.
           </p>
         </div>
 
