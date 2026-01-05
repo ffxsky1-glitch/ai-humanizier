@@ -7,21 +7,21 @@ export function Testimonials() {
       name: "Rachel Anderson",
       role: "Student",
       content:
-        "The AI Humanizer is perfect for helping me humanize ChatGPT text while keeping my personal writing style. It's become an essential part of my academic toolkit.",
+        "Rewritify is the AI humanizer I trust for essays. It is fast, free, and does not require login.",
       rating: 5,
     },
     {
       name: "James Brown",
       role: "SEO Expert",
       content:
-        "The Humanize AI Text tool is essential for my content strategy. It transforms AI-generated drafts into engaging, natural content that resonates with our audience.",
+        "Rewritify is a reliable AI rewriter for content teams. The output reads cleaner and keeps keywords intact.",
       rating: 5,
     },
     {
       name: "Anna Taylor",
       role: "Writer",
       content:
-        "Converting AI to human text used to be a headache until I found this tool. Now my writing flows naturally, and my readers can't tell the difference!",
+        "Rewritify makes AI drafts feel human without a heavy rewrite. It is simple and privacy-friendly.",
       rating: 5,
     },
   ]
@@ -30,7 +30,7 @@ export function Testimonials() {
     <section id="testimonials" className="py-20 px-4 bg-muted/30">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">User Reviews of AI Humanizer</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">User Reviews of Rewritify</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             See what our users have to say about their experience
           </p>

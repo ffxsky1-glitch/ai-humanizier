@@ -7,6 +7,7 @@ import { Testimonials } from "@/components/testimonials"
 import { FAQ } from "@/components/faq"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { ExpandedContent } from "@/components/expanded-content"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <FeaturesSection />
       <HowItWorks />
       <UseCases />
+      <ExpandedContent />
       <Testimonials />
       <FAQ />
       <Footer />

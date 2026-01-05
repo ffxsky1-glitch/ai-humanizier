@@ -3,34 +3,39 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export function FAQ() {
   const faqs = [
     {
-      question: "Who can benefit from Humanize AI Text?",
+      question: "Who should use Rewritify?",
       answer:
-        "AI Humanizer caters to students, marketers, SEO specialists, writers, bloggers, journalists, and researchers. It's ideal for anyone who wants to avoid AI detection issues while using AI-assisted content creation.",
+        "Rewritify is for students, professionals, marketers, and creators who want an AI rewriter that is fast, private, and easy to use.",
     },
     {
-      question: "What file formats are supported?",
+      question: "What file formats does Rewritify support?",
       answer:
-        "AI Humanizer supports multiple formats including plain text, DOC, DOCX, PDF, Markdown files, and scanned images (PNG, JPG, JPEG). Our OCR technology can extract text from scanned documents and images.",
+        "Rewritify supports plain text and Markdown files. Upload .txt or .md files for the best AI humanizer results.",
     },
     {
-      question: "Can Humanize AI effectively convert AI to human content?",
+      question: "Can Rewritify reduce AI detection risk?",
       answer:
-        "Yes, our AI Humanizer excels at transforming AI-generated text into smooth, human-like content. It effortlessly evades AI detection while ensuring the rewritten text maintains natural flow and coherence.",
+        "Rewritify is designed to reduce AI detection flags by improving flow, sentence variety, and natural phrasing.",
     },
     {
       question: "Which AI detectors does it bypass?",
       answer:
-        "AI Humanizer is designed to bypass major AI detection platforms including Turnitin, ZeroGPT, GPTZero, Copyleak, Originality.ai, Writer, Sapling, and Quillbot. Our algorithms are regularly updated to stay ahead of detection advancements.",
+        "Rewritify is built to lower detection risk on tools like Turnitin, GPTZero, and Copyleak while preserving meaning. Results vary by input and detector updates.",
     },
     {
-      question: "How does the AI Humanizer work?",
+      question: "How does Rewritify work?",
       answer:
-        'Simply paste your AI-generated text or upload a file, click "Humanize AI Text", and our advanced algorithm processes your content using NLP and machine learning to transform it into natural, human-like writing that bypasses AI detection.',
+        'Paste your text, click "Rewrite Now", and Rewritify rephrases it into cleaner, human-sounding writing.',
     },
     {
-      question: "Is the humanized content SEO-friendly?",
+      question: "Is Rewritify output SEO-friendly?",
       answer:
-        "Yes! Our AI Humanizer maintains keyword relevance while improving readability and engagement, making it perfect for SEO-optimized content that ranks well and resonates with human readers.",
+        "Yes. Rewritify keeps keywords while improving readability so content performs better in search.",
+    },
+    {
+      question: "Is Rewritify free and no-login?",
+      answer:
+        "Yes. Rewritify offers core features for free without requiring an account, and paid models are optional.",
     },
   ]
 
@@ -39,7 +44,7 @@ export function FAQ() {
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg text-muted-foreground">Everything you need to know about AI Humanizer</p>
+          <p className="text-lg text-muted-foreground">Everything you need to know about Rewritify</p>
         </div>
 
         <Accordion type="single" collapsible className="w-full">

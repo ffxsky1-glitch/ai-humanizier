@@ -6,17 +6,17 @@ export function HowItWorks() {
       icon: Upload,
       title: "Upload or Paste Text",
       description:
-        "Enter your AI-generated text directly or upload files in various formats (DOC, PDF, Markdown, or scanned images).",
+        "Enter your AI-generated text directly or upload .txt and .md files for quick processing.",
     },
     {
       icon: Cpu,
-      title: "AI Processing",
-      description: "Our advanced algorithm analyzes and transforms your content into natural, human-like writing.",
+      title: "Rewritify Processing",
+      description: "Rewritify rewrites your draft with human flow while keeping meaning intact.",
     },
     {
       icon: CheckCircle,
-      title: "Get Human Text",
-      description: "Receive 100% humanized content that bypasses AI detection while maintaining your original meaning.",
+      title: "Get Safer, Human Output",
+      description: "Get AI humanizer output designed to reduce detection risk and sound natural.",
     },
   ]
 
@@ -24,9 +24,9 @@ export function HowItWorks() {
     <section id="how-it-works" className="py-20 px-4 bg-muted/30">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">How to Convert AI to Human Text</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">How Rewritify Works</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Three simple steps to transform your AI content into authentic human writing
+            Three simple steps to rewrite AI text fast, safely, and with better flow.
           </p>
         </div>
 

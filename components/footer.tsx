@@ -8,12 +8,12 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
-                AH
+                RW
               </div>
-              <span className="text-lg font-bold text-foreground">AI Humanizer</span>
+              <span className="text-lg font-bold text-foreground">Rewritify</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Transform AI content into natural, human-like writing that bypasses all AI detection.
+              Fast AI rewriter and AI humanizer with free core features, no login, and privacy-first design.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 text-center">
-          <p className="text-sm text-muted-foreground">© 2025 AI Humanizer. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2025 Rewritify. All rights reserved.</p>
         </div>
       </div>
     </footer>

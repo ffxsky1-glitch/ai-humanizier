@@ -7,21 +7,21 @@ export function UseCases() {
       icon: GraduationCap,
       title: "Students",
       description:
-        "Ensure your assignments remain AI-free and original. Our AI Humanizer guarantees your work is indistinguishable from human-written content.",
+        "Rewrite homework, essays, and slides fast. Rewritify helps reduce AI detector concerns before submission.",
       color: "bg-blue-500",
     },
     {
       icon: Briefcase,
       title: "Professionals",
       description:
-        "Create professional documents that bypass AI detection effortlessly. Humanize AI Text Tool refines your text to maintain professionalism and originality.",
+        "Polish reports and client emails without sounding robotic. Rewritify keeps your voice while boosting clarity.",
       color: "bg-green-500",
     },
     {
       icon: PenTool,
       title: "Writers & Bloggers",
       description:
-        "Transform AI drafts into engaging human content. Boost SEO rankings and reader engagement with more relatable and natural content.",
+        "Turn AI drafts into readable posts with strong SEO flow. Rewritify is an AI rewriter built for creators.",
       color: "bg-purple-500",
     },
   ]
@@ -30,9 +30,9 @@ export function UseCases() {
     <section className="py-20 px-4">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Who Needs AI Humanizer?</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Who Uses Rewritify?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Perfect for anyone who wants to create authentic, undetectable content
+            Simple, fast, and private for anyone who needs an AI rewriter they can trust.
           </p>
         </div>
 

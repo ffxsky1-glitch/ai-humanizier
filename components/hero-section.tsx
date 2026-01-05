@@ -59,7 +59,7 @@ export function HeroSection() {
   const handleHumanize = async () => {
     if (!inputText.trim()) {
       toast({
-        title: "No text to humanize",
+        title: "No text to rewrite",
         description: "Please enter some text or upload a file first.",
         variant: "destructive",
       })
@@ -82,21 +82,21 @@ export function HeroSection() {
 
       if (!response.ok) {
         const errorPayload = (await response.json().catch(() => null)) as { error?: string } | null
-        throw new Error(errorPayload?.error || "Humanize request failed.")
+        throw new Error(errorPayload?.error || "Rewrite request failed.")
       }
 
       const data = (await response.json()) as { output?: string }
       if (requestIdRef.current !== requestId) return
       setOutputText(data.output?.trim() || "")
       toast({
-        title: "Text humanized successfully",
-        description: "Your content is now 100% human-like.",
+        title: "Text rewritten successfully",
+        description: "Your content now reads more human.",
       })
     } catch (error) {
       if (requestIdRef.current !== requestId) return
       const message = error instanceof Error ? error.message : "Something went wrong."
       toast({
-        title: "Humanize failed",
+        title: "Rewrite failed",
         description: message,
         variant: "destructive",
       })
@@ -119,13 +119,17 @@ export function HeroSection() {
     <section className="pt-32 pb-20 px-4">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-primary mb-6">
+            Faster than traditional rewriters. Turnitin-aware (results vary). Inspired by aihumanize.io.
+          </div>
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-            Superior AI Humanizer to
-            <span className="text-primary"> Humanize AI Text</span>
+            Rewritify is the fast
+            <span className="text-primary"> AI Rewriter & AI Humanizer</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Transform AI content into natural, human-like writing that bypasses all AI detection. Our advanced AI
-            humanizer ensures perfect authenticity while preserving your message.
+            Avoid getting flagged for AI text in homework, essays, PPTs, or reports. Rewritify rewrites fast, preserves
+            meaning, and is engineered to reduce AI detection risk while protecting privacy. Core features are free, no
+            login is required, and it is easy for students, professionals, and creators to use.
           </p>
         </div>
 
@@ -173,20 +177,20 @@ export function HeroSection() {
           {/* Output Section */}
           <Card className="p-6 bg-card">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-foreground">Humanized Output</h3>
+              <h3 className="font-semibold text-foreground">Rewritify Output</h3>
               <Button variant="ghost" size="icon" onClick={() => handleCopy(outputText)} disabled={!outputText}>
                 <Copy className="h-4 w-4" />
               </Button>
             </div>
             <Textarea
-              placeholder="Your humanized text will appear here..."
+              placeholder="Your rewritten text will appear here..."
               className="min-h-[300px] resize-none bg-background"
               value={outputText}
               readOnly
             />
             <div className="mt-4 flex items-center justify-between text-sm">
               <span className="text-muted-foreground">{outputText.length} characters</span>
-              {outputText && <span className="text-green-600 dark:text-green-400 font-medium">✓ 100% Human-like</span>}
+              {outputText && <span className="text-green-600 dark:text-green-400 font-medium">100% Human-like</span>}
             </div>
           </Card>
         </div>
@@ -198,7 +202,7 @@ export function HeroSection() {
             ) : (
               <>
                 <Sparkles className="mr-2 h-5 w-5" />
-                Humanize AI Text
+                Rewrite AI Text
               </>
             )}
           </Button>

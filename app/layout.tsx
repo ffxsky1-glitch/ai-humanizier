@@ -9,10 +9,10 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AI Humanizer - Transform AI Text to Human Writing",
+  title: "Rewritify - Fast AI Rewriter & AI Humanizer (No Login, Free)",
   description:
-    "Superior AI Humanizer to convert AI-generated content into natural, human-like writing. Bypass all AI detectors including Turnitin, GPTZero, and Copyleak.",
-  keywords: "AI humanizer, humanize AI text, AI to human converter, bypass AI detection, AI content humanizer",
+    "Rewritify is a fast AI rewriter and AI humanizer for essays, homework, PPTs, and reports. Free core features, no login, privacy-first, and designed to reduce AI detection risk.",
+  keywords: "rewritify, AI rewriter, AI humanizer, AI paraphraser, rewrite AI text, Turnitin",
   generator: "v0.app",
   icons: {
     icon: [

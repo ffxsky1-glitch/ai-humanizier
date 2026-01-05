@@ -12,11 +12,43 @@ type PredictionResponse = {
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
+const splitIntoChunks = (text: string, maxChars: number) => {
+  const paragraphs = text.split(/\n{2,}/)
+  const chunks: string[] = []
+
+  for (const paragraph of paragraphs) {
+    const trimmed = paragraph.trim()
+    if (!trimmed) continue
+
+    if (trimmed.length <= maxChars) {
+      chunks.push(trimmed)
+      continue
+    }
+
+    const sentences = trimmed.split(/(?<=[.!?])\s+/)
+    let buffer = ""
+    for (const sentence of sentences) {
+      if (!sentence) continue
+      const candidate = buffer ? `${buffer} ${sentence}` : sentence
+      if (candidate.length > maxChars && buffer) {
+        chunks.push(buffer)
+        buffer = sentence
+      } else {
+        buffer = candidate
+      }
+    }
+    if (buffer) chunks.push(buffer)
+  }
+
+  return chunks
+}
+
 const normalizeOutput = (output: unknown) => {
   if (typeof output === "string") return output
   if (Array.isArray(output)) {
-    const first = output.find((item) => typeof item === "string" && item.trim().length > 0)
-    if (typeof first === "string") return first
+    const candidates = output.filter((item) => typeof item === "string").map((item) => item.trim())
+    const longest = candidates.sort((a, b) => b.length - a.length)[0]
+    if (longest) return longest
     return output.join("\n")
   }
   if (output == null) return ""
@@ -35,89 +67,97 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Text is required." }, { status: 400 })
   }
 
-  const prompt = text
-  const maxLength = Math.min(512, Math.max(120, Math.ceil(text.length * 0.9)))
+  const chunks = splitIntoChunks(text, 700)
+  const outputs: string[] = []
 
-  const requestBody = JSON.stringify({
-    version: MODEL_VERSION_ID,
-    input: {
-      prompt,
-      max_length: maxLength,
-      num_return_sequences: 1,
-      num_beams: 2,
-      num_beam_groups: 2,
-      temperature: 0.7,
-      top_p: 0.95,
-      repetition_penalty: 1.05,
-      diversity_penalty: 1.1,
-      no_repeat_ngram_size: 3,
-    },
-  })
+  for (const chunk of chunks) {
+    const prompt = `paraphrase: ${chunk}`
+    const maxLength = Math.min(320, Math.max(120, Math.ceil(chunk.length * 1.2)))
 
-  let prediction: PredictionResponse | null = null
-  const maxCreateAttempts = 3
-  for (let attempt = 0; attempt < maxCreateAttempts; attempt += 1) {
-    const createResponse = await fetch(REPLICATE_API_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
+    const requestBody = JSON.stringify({
+      version: MODEL_VERSION_ID,
+      input: {
+        prompt,
+        max_length: maxLength,
+        num_return_sequences: 2,
+        num_beams: 4,
+        num_beam_groups: 2,
+        temperature: 0.7,
+        top_p: 0.95,
+        repetition_penalty: 1.05,
+        diversity_penalty: 1.1,
+        no_repeat_ngram_size: 3,
       },
-      body: requestBody,
     })
 
-    if (createResponse.status === 429) {
-      const retryAfter = Number(createResponse.headers.get("retry-after") || "1")
-      await sleep(Math.min(2000, retryAfter * 1000))
-      continue
-    }
+    let prediction: PredictionResponse | null = null
+    const maxCreateAttempts = 3
+    for (let attempt = 0; attempt < maxCreateAttempts; attempt += 1) {
+      const createResponse = await fetch(REPLICATE_API_URL, {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: requestBody,
+      })
 
-    if (!createResponse.ok) {
-      const errorBody = await createResponse.text()
-      return NextResponse.json(
-        { error: `Replicate request failed: ${errorBody || createResponse.statusText}` },
-        { status: 500 },
-      )
-    }
+      if (createResponse.status === 429) {
+        const retryAfter = Number(createResponse.headers.get("retry-after") || "1")
+        await sleep(Math.min(2000, retryAfter * 1000))
+        continue
+      }
 
-    prediction = (await createResponse.json()) as PredictionResponse
-    break
-  }
+      if (!createResponse.ok) {
+        const errorBody = await createResponse.text()
+        return NextResponse.json(
+          { error: `Replicate request failed: ${errorBody || createResponse.statusText}` },
+          { status: 500 },
+        )
+      }
 
-  if (!prediction) {
-    return NextResponse.json({ error: "Replicate request failed: rate limited." }, { status: 429 })
-  }
-
-  const maxAttempts = 60
-  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    if (prediction.status === "succeeded" || prediction.status === "failed" || prediction.status === "canceled") {
+      prediction = (await createResponse.json()) as PredictionResponse
       break
     }
-    await sleep(1000)
-    const statusResponse = await fetch(`${REPLICATE_API_URL}/${prediction.id}`, {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
 
-    if (!statusResponse.ok) {
-      const errorBody = await statusResponse.text()
+    if (!prediction) {
+      return NextResponse.json({ error: "Replicate request failed: rate limited." }, { status: 429 })
+    }
+
+    const maxAttempts = 60
+    for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+      if (prediction.status === "succeeded" || prediction.status === "failed" || prediction.status === "canceled") {
+        break
+      }
+      await sleep(1000)
+      const statusResponse = await fetch(`${REPLICATE_API_URL}/${prediction.id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+
+      if (!statusResponse.ok) {
+        const errorBody = await statusResponse.text()
+        return NextResponse.json(
+          { error: `Replicate status failed: ${errorBody || statusResponse.statusText}` },
+          { status: 500 },
+        )
+      }
+
+      prediction = (await statusResponse.json()) as PredictionResponse
+    }
+
+    if (prediction.status !== "succeeded") {
       return NextResponse.json(
-        { error: `Replicate status failed: ${errorBody || statusResponse.statusText}` },
+        { error: prediction.error || "Replicate prediction did not succeed." },
         { status: 500 },
       )
     }
 
-    prediction = (await statusResponse.json()) as PredictionResponse
+    outputs.push(normalizeOutput(prediction.output))
+    await sleep(200)
   }
 
-  if (prediction.status !== "succeeded") {
-    return NextResponse.json(
-      { error: prediction.error || "Replicate prediction did not succeed." },
-      { status: 500 },
-    )
-  }
-
-  return NextResponse.json({ output: normalizeOutput(prediction.output) })
+  return NextResponse.json({ output: outputs.join("\n\n") })
 }

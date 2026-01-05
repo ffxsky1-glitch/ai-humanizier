@@ -5,33 +5,33 @@ export function FeaturesSection() {
   const features = [
     {
       icon: FileText,
-      title: "Multiple File Format Support",
-      description: "Upload DOC, DOCX, PDF, Markdown files, or scanned images with OCR text extraction.",
+      title: "Clean Inputs, Clean Outputs",
+      description: "Upload TXT or Markdown files for consistent Rewritify AI humanizer output.",
     },
     {
       icon: Zap,
-      title: "Instant Processing",
-      description: "Get humanized content in seconds with our advanced AI algorithms.",
+      title: "Faster Than Traditional Rewriters",
+      description: "Rewritify delivers fast AI rewriting in seconds, not minutes.",
     },
     {
       icon: Shield,
-      title: "Bypass AI Detection",
-      description: "Successfully passes Turnitin, GPTZero, Copyleak, and other major AI detectors.",
+      title: "Lower Detection Risk",
+      description: "Designed to reduce AI detection flags on tools like Turnitin and GPTZero.",
     },
     {
       icon: Sparkles,
       title: "Natural Human Writing",
-      description: "Transforms AI text into authentic, engaging content that reads naturally.",
+      description: "Rewritify turns AI text into human-sounding writing with better flow.",
     },
     {
       icon: Globe,
       title: "Multiple Writing Styles",
-      description: "Supports academic, blog, business, formal, and informal writing styles.",
+      description: "Academic, business, blog, and casual styles are easy to match.",
     },
     {
       icon: TrendingUp,
-      title: "SEO Optimized",
-      description: "Maintains keyword relevance while improving readability and engagement.",
+      title: "SEO Ready",
+      description: "Keeps keywords while making content clearer for readers and search engines.",
     },
   ]
 
@@ -39,9 +39,9 @@ export function FeaturesSection() {
     <section id="features" className="py-20 px-4">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Why Choose AI Humanizer?</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Why Choose Rewritify?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Transform your AI-generated content into authentic human writing with our powerful features
+            Rewritify is the AI rewriter built for speed, privacy, and safer humanized results.
           </p>
         </div>
 
