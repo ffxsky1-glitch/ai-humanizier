@@ -134,7 +134,7 @@ export function HeroSection() {
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Input Section */}
-          <Card className="p-6 bg-card">
+          <Card className="p-6 bg-card" id="rewrite-section">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-foreground">Input Text</h3>
               <div className="flex gap-2">
@@ -158,6 +158,7 @@ export function HeroSection() {
               </div>
             </div>
             <Textarea
+              id="rewrite-input"
               placeholder="Paste your AI-generated text here, or upload a file (TXT or Markdown)..."
               className="min-h-[300px] resize-none bg-background"
               value={inputText}

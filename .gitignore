@@ -24,6 +24,20 @@ dev.err.log
 # vercel
 .vercel
 
+# local auth/ocr artifacts
+ocr_pages/
+pdf_ocr.txt
+supabase-cli.tar.gz
+supabase-codex apikey.txt
+supabase_api_keys.json
+supabase_project_create.json
+supabase_project_create_error.txt
+supabase_project_pause.json
+supabase_projects.json
+tessdata/
+tools/
+*.pdf
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
