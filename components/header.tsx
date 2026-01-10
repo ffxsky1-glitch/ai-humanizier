@@ -1,10 +1,32 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import Link from "next/link"
+import { supabase } from "@/lib/supabase/client"
 
 export function Header() {
+  const [userEmail, setUserEmail] = useState<string | null>(null)
+
+  useEffect(() => {
+    let ignore = false
+
+    supabase.auth.getUser().then(({ data }) => {
+      if (ignore) return
+      setUserEmail(data.user?.email ?? null)
+    })
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUserEmail(session?.user?.email ?? null)
+    })
+
+    return () => {
+      ignore = true
+      authListener.subscription.unsubscribe()
+    }
+  }, [])
+
   const handleRewriteClick = () => {
     const input = document.getElementById("rewrite-input") as HTMLTextAreaElement | null
     if (input) {
@@ -61,9 +83,23 @@ export function Header() {
             No login needed
           </span>
           <span className="hidden md:inline-flex h-4 w-px bg-border" />
-          <Link href="/login" className="hidden md:inline-flex">
-            <Button variant="ghost">Sign In</Button>
-          </Link>
+          {userEmail ? (
+            <div className="hidden md:flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">{userEmail}</span>
+              <Button
+                variant="ghost"
+                onClick={async () => {
+                  await supabase.auth.signOut()
+                }}
+              >
+                Sign Out
+              </Button>
+            </div>
+          ) : (
+            <Link href="/login" className="hidden md:inline-flex">
+              <Button variant="ghost">Sign In</Button>
+            </Link>
+          )}
           <Button onClick={handleRewriteClick}>Rewrite Now</Button>
           <Button variant="ghost" size="icon" className="md:hidden">
             <Menu className="h-5 w-5" />

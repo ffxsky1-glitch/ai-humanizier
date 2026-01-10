@@ -34,6 +34,8 @@ supabase_project_create.json
 supabase_project_create_error.txt
 supabase_project_pause.json
 supabase_projects.json
+supabase_auth_config.json
+supabase_auth_config_update.json
 tessdata/
 tools/
 *.pdf
