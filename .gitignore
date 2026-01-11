@@ -38,7 +38,10 @@ supabase_auth_config.json
 supabase_auth_config_update.json
 tessdata/
 tools/
+creem_openapi.json
+creem_products.json
 *.pdf
+*api-key.txt
 
 # typescript
 *.tsbuildinfo

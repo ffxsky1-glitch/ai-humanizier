@@ -35,7 +35,11 @@ export function Header() {
       return
     }
     const section = document.getElementById("rewrite-section")
-    section?.scrollIntoView({ behavior: "smooth", block: "start" })
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" })
+      return
+    }
+    window.location.href = "/#rewrite-section"
   }
 
   return (
@@ -49,6 +53,9 @@ export function Header() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
+          <Link href="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Pricing
+          </Link>
           <Link
             href="#features"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
