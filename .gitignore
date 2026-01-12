@@ -42,6 +42,7 @@ creem_openapi.json
 creem_products.json
 *.pdf
 *api-key.txt
+creem_test_mode.html
 
 # typescript
 *.tsbuildinfo

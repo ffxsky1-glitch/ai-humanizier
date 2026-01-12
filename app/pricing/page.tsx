@@ -34,7 +34,7 @@ const tiers: PlanTier[] = [
   {
     id: "starter",
     name: "Starter",
-    price: "$9",
+    price: "$1",
     cadence: "per month",
     description: "For students and solo creators who need faster, cleaner rewrites.",
     features: ["Longer inputs", "Priority processing", "Cleaner structure", "Commercial use"],
